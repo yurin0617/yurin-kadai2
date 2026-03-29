@@ -15,3 +15,12 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+// 商品詳細画面
+Route::get('/products/detail/{productId}', [ProductController::class, 'show'])->name('products.show');
+// 商品登録画面を表示する（GET）
+Route::get('/products/register', [ProductController::class, 'create'])->name('product.register');
+
+// 商品を保存する処理（POST）
+Route::post('/products/register', [ProductController::class, 'store'])->name('product.store');
+
+
