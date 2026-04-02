@@ -1,29 +1,28 @@
-<form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
-
-    @if ($errors->any())
-    <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 10px;">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
 
     <div>
         <label>商品名</label>
         <input type="text" name="name" value="{{ old('name') }}">
+        @error('name')
+        <div style="color: red;">{{ $message }}</div>
+        @enderror
     </div>
 
     <div>
         <label>値段</label>
         <input type="number" name="price" value="{{ old('price') }}">
+        @error('price')
+        <div style="color: red;">{{ $message }}</div>
+        @enderror
     </div>
 
     <div>
         <label>商品画像</label>
         <input type="file" name="image">
+        @error('image')
+        <div style="color: red;">{{ $message }}</div>
+        @enderror
     </div>
 
     <div>
@@ -32,11 +31,17 @@
         <input type="checkbox" name="seasons[]" value="2"> 夏
         <input type="checkbox" name="seasons[]" value="3"> 秋
         <input type="checkbox" name="seasons[]" value="4"> 冬
+        @error('seasons')
+        <div style="color: red;">{{ $message }}</div>
+        @enderror
     </div>
 
     <div>
         <label>商品説明</label>
         <textarea name="description">{{ old('description') }}</textarea>
+        @error('description')
+        <div style="color: red;">{{ $message }}</div>
+        @enderror
     </div>
 
     <button type="submit">登録</button>

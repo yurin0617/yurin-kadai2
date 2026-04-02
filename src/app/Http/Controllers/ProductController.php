@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         // 1. 検索窓に入力された文字を受け取る
-        $search = $request->input('search');
+        $search = $request->search;
 
         $sort = $request->input('sort');
 
@@ -38,7 +38,6 @@ class ProductController extends Controller
     {
         // 指定されたIDの商品を1件だけ取得。季節（seasons）も一緒に連れてくる。
         $product = Product::with('seasons')->findOrFail($productId);
-
         return view('products.show', compact('product'));
     }
     // 登録画面を表示する
