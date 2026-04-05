@@ -8,13 +8,15 @@
         <form action="{{ route('products.index') }}" method="GET" class="search-form">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="商品名で検索">
 
+            <button type="submit">検索</button>
+
+            <h3 class="sidebar-title">価格順で表示</h3>
             <select name="sort">
                 <option value="" disabled {{ !request('sort') ? 'selected' : '' }}>価格で並び替え</option>
                 <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>低い順に表示</option>
                 <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>高い順に表示</option>
             </select>
 
-            <button type="submit">検索</button>
         </form>
     </aside>
 
