@@ -9,6 +9,12 @@
     @if(Route::is('products.index'))
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     @endif
+    @if(Route::is('product.register'))
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    @endif
+    @if(Route::is('products.show'))
+    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
+    @endif
 </head>
 
 <body>

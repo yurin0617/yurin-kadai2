@@ -1,0 +1,136 @@
+/* 全体コンテナ */
+.detail-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* 画像と情報の横並び設定 */
+.detail-flex-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+/* 左側：画像エリア */
+.detail-image-group {
+    flex: 1;
+}
+
+.current-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+
+/* 右側：情報エリア */
+.detail-info-group {
+    flex: 1;
+}
+
+/* フォーム共通設定 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.description-area textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.description-area textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* 季節チェックボックス */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+/* ボタンエリア */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.btn-submit {
+    background-color: #ffcc00; /* mogitate黄色 */
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #e6b800;
+}
+
+.btn-back {
+    color: #888;
+    text-decoration: underline;
+}
+
+/* 削除セクション */
+.divider {
+    margin: 40px 0 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.btn-delete {
+    display: block;
+    margin: 0 auto;
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.error-msg {
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}

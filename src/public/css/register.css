@@ -1,0 +1,133 @@
+/* 1. 登録画面全体のコンテナ（中央に配置） */
+.register-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* 2. タイトル */
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 3. 各入力グループの余白 */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* 必須ラベル（赤色） */
+.required {
+    color: #ff4d4d;
+    font-size: 0.75rem;
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+/* 4. 入力フィールド（テキスト、数値、テキストエリア） */
+.register-form input[type="text"],
+.register-form input[type="number"],
+.register-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box; /* paddingを含めた幅計算 */
+    transition: 0.3s;
+}
+
+.register-form textarea {
+    height: 120px;
+    resize: vertical; /* 縦方向のみリサイズ可能 */
+}
+
+/* フォーカス時の色（mogitateの黄色に光る） */
+.register-form input:focus,
+.register-form textarea:focus {
+    outline: none;
+    border-color: #ffcc00;
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+}
+
+/* 5. チェックボックスグループ（横並び） */
+.checkbox-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* 6. ファイル入力 */
+.file-input {
+    border: none !important;
+    padding: 10px 0 !important;
+}
+
+/* 7. ボタンエリア（戻る・登録を横並び） */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+/* 登録ボタン（mogitateカラーの黄色） */
+.btn-submit {
+    background-color: #ffcc00;
+    color: #fff;
+    border: none;
+    padding: 12px 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #e6b800;
+    transform: translateY(-2px);
+}
+
+/* 戻るボタン */
+.btn-back {
+    color: #888;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.btn-back:hover {
+    color: #333;
+}
+
+/* 8. エラーメッセージ */
+.error-msg {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 600;
+}
