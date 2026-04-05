@@ -1,49 +1,67 @@
-<form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" novalidate>
-    @csrf
+@extends('layouts.app')
 
-    <div>
-        <label>商品名</label>
-        <input type="text" name="name" value="{{ old('name') }}">
-        @error('name')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-    </div>
+@section('content')
+<div class="register-container">
+    <h2 class="page-title">商品登録</h2>
 
-    <div>
-        <label>値段</label>
-        <input type="number" name="price" value="{{ old('price') }}">
-        @error('price')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-    </div>
+    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" class="register-form" novalidate>
+        @csrf
 
-    <div>
-        <label>商品画像</label>
-        <input type="file" name="image">
-        @error('image')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-    </div>
+        {{-- 商品名 --}}
+        <div class="form-group">
+            <label>商品名 <span class="required">必須</span></label>
+            <input type="text" name="name" value="{{ old('name') }}" placeholder="商品名を入力">
+            @error('name')
+            <div class="error-msg">{{ $message }}</div>
+            @enderror
+        </div>
 
-    <div>
-        <label>季節</label>
-        <input type="checkbox" name="seasons[]" value="1"> 春
-        <input type="checkbox" name="seasons[]" value="2"> 夏
-        <input type="checkbox" name="seasons[]" value="3"> 秋
-        <input type="checkbox" name="seasons[]" value="4"> 冬
-        @error('seasons')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-    </div>
+        {{-- 値段 --}}
+        <div class="form-group">
+            <label>値段 <span class="required">必須</span></label>
+            <input type="number" name="price" value="{{ old('price') }}" placeholder="値段を入力">
+            @error('price')
+            <div class="error-msg">{{ $message }}</div>
+            @enderror
+        </div>
 
-    <div>
-        <label>商品説明</label>
-        <textarea name="description">{{ old('description') }}</textarea>
-        @error('description')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-    </div>
+        {{-- 商品画像 --}}
+        <div class="form-group">
+            <label>商品画像 <span class="required">必須</span></label>
+            <input type="file" name="image" class="file-input">
+            @error('image')
+            <div class="error-msg">{{ $message }}</div>
+            @enderror
+        </div>
 
-    <button type="submit">登録</button>
-    <a href="{{ route('products.index') }}">戻る</a>
-</form>
+        {{-- 季節 --}}
+        <div class="form-group">
+            <label>季節 <span class="required">必須</span></label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="seasons[]" value="1" {{ is_array(old('seasons')) && in_array('1', old('seasons')) ? 'checked' : '' }}> 春</label>
+                <label><input type="checkbox" name="seasons[]" value="2" {{ is_array(old('seasons')) && in_array('2', old('seasons')) ? 'checked' : '' }}> 夏</label>
+                <label><input type="checkbox" name="seasons[]" value="3" {{ is_array(old('seasons')) && in_array('3', old('seasons')) ? 'checked' : '' }}> 秋</label>
+                <label><input type="checkbox" name="seasons[]" value="4" {{ is_array(old('seasons')) && in_array('4', old('seasons')) ? 'checked' : '' }}> 冬</label>
+            </div>
+            @error('seasons')
+            <div class="error-msg">{{ $message }}</div>
+            @enderror
+        </div>
+
+        {{-- 商品説明 --}}
+        <div class="form-group">
+            <label>商品説明 <span class="required">必須</span></label>
+            <textarea name="description" placeholder="商品の説明を入力してください">{{ old('description') }}</textarea>
+            @error('description')
+            <div class="error-msg">{{ $message }}</div>
+            @enderror
+        </div>
+
+        {{-- ボタンエリア --}}
+        <div class="form-actions">
+            <a href="{{ route('products.index') }}" class="btn-back">戻る</a>
+            <button type="submit" class="btn-submit">登録</button>
+        </div>
+    </form>
+</div>
+@endsection

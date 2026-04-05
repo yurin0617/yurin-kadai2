@@ -1,0 +1,128 @@
+/* 左右レイアウトの構築 */
+.index-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* 左側サイドバー */
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* 右側メインエリア */
+.main-content {
+    flex-grow: 1;
+}
+
+/* 右上のボタン配置 */
+.top-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.btn-add {
+    background-color: #ffcc00;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* 商品を3列2行（計6件）で並べる */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列 */
+    gap: 25px;
+}
+
+/* カードのデザイン */
+.product-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* ページネーション全体のコンテナ */
+.pagination-wrapper {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 巨大な矢印(SVG)を強制的に小さくして、ボタンの中に閉じ込める */
+.pagination-wrapper svg {
+    width: 14px !important;  /* ボタン32pxに対してこのくらいが綺麗 */
+    height: 14px !important;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* 数字・矢印ボタンの共通設定（階層を飛ばして直接指定） */
+.pagination-wrapper a,
+.pagination-wrapper span {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 32px;   /* あなたが設定したサイズ */
+    height: 32px;
+    padding: 0 4px;
+    margin: 0 2px;
+
+    font-size: 0.85rem;
+    border: 1px solid #eee !important;
+    background-color: #fff !important;
+    color: #333 !important;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* 現在のページ（黄色） */
+.pagination-wrapper .active span,
+.pagination-wrapper [aria-current="page"] {
+    background-color: #ffcc00 !important; /* ロゴの黄色 */
+    border-color: #ffcc00 !important;
+    color: #fff !important;
+}
+
+/* 英文（Showing...）を確実に消す */
+.pagination-wrapper nav > div:first-child,
+.pagination-wrapper .flex.items-center.justify-between > div:first-child {
+    display: none !important;
+}
+
+/* ボタンを横並びにするための親要素への命令 */
+.pagination-wrapper nav > div:last-child,
+.pagination-wrapper .flex.items-center.justify-between > div:last-child {
+    display: flex !important;
+    flex-direction: row !important;
+}

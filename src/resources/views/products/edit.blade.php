@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <h1>商品詳細</h1>
 
 <form action="{{ route('products.update', ['productId' => $product->id]) }}" method="POST" enctype="multipart/form-data" novalidate>
@@ -36,7 +39,7 @@
                    2. 初回表示時 (DBに保存されているか)
                    どちらかに該当すれば checked をつける
                 --}}
-            {{ (is_array(old('seasons')) && in_array($season->id, old('seasons'))) || 
+            {{ (is_array(old('seasons')) && in_array($season->id, old('seasons'))) ||
                    ($product->seasons->contains($season->id)) ? 'checked' : '' }}>
         {{ $season->name }}
         @endforeach
@@ -66,3 +69,4 @@
         削除する
     </button>
 </form>
+@endsection
