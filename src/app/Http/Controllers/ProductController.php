@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Season;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -69,5 +72,39 @@ class ProductController extends Controller
 
         // 5. 完了メッセージを出して一覧に戻る
         return redirect()->route('products.index')->with('success', '商品を登録しました');
+    }
+    public function edit($productId)
+    {
+        // 編集対象の商品を取得（リレーションも一緒に）
+        $product = Product::with('seasons')->findOrFail($productId);
+
+        // チェックボックスの選択肢として使うために全季節を取得
+        $seasons = Season::all();
+
+        return view('products.edit', compact('product', 'seasons'));
+    }
+    public function update(UpdateProductRequest $request, $productId)
+    {
+        // ここで $request->validate(...) を書く必要はありません。
+        // このメソッドが動く前に、Laravelが自動で「別シート」のルールをチェックしてくれます！
+
+        $product = Product::findOrFail($productId);
+
+        $imagePath = $product->image;
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($product->image);
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'image' => $imagePath,
+            'description' => $request->description,
+        ]);
+
+        $product->seasons()->sync($request->seasons);
+
+        return redirect()->route('products.show', $product->id)->with('success', '更新しました');
     }
 }

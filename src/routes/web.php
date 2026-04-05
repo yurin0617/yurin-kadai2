@@ -23,4 +23,8 @@ Route::get('/products/register', [ProductController::class, 'create'])->name('pr
 // 商品を保存する処理（POST）
 Route::post('/products/register', [ProductController::class, 'store'])->name('product.store');
 
+// 商品編集画面を表示する
+Route::get('/products/{productId}/update', [ProductController::class, 'edit'])->name('products.edit');
+// 2. 【重要】データを更新保存する（POST）を追加！
+Route::post('/products/{productId}/update', [ProductController::class, 'update'])->name('products.update');
 
