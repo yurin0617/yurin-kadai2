@@ -48,7 +48,7 @@ Ngnix：1.21.1
 
 ## URL
 ```
-ここにURLを記載
+https://github.com/yurin0617/yurin-kadai2.git
 ```
 
 ## ER図
