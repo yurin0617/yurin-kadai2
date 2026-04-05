@@ -36,6 +36,9 @@ php artisan db:seed
 "The stream or file could not be opened"エラーが発生した場合
 srcディレクトリにあるstorageディレクトリに権限を設定
 chmod -R 777 storage
+
+シンボリックリンクを作成
+php artisan storage:link
 ```
 
 ## 使用技術(実行環境)
