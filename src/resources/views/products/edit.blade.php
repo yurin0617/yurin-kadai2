@@ -1,6 +1,6 @@
-<h1>商品編集</h1>
+<h1>商品詳細</h1>
 
-<form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" novalidate>
+<form action="{{ route('products.update', ['productId' => $product->id]) }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
     {{-- 更新なので本来は @method('PATCH') ですが、要件のパスが /update なので POST/PUT等で調整 --}}
     <div>
@@ -54,5 +54,15 @@
     </div>
 
     <button type="submit">変更を保存</button>
-    <a href="{{ route('products.show', $product->id) }}">戻る</a>
+    <a href="{{ route('products.index')}}">戻る</a>
+
+    <hr> {{-- 区切り線 --}}
+</form>
+
+<form action="{{ route('products.destroy', ['productId' => $product->id]) }}" method="POST">
+    @csrf
+    {{-- ボタンのデザインはCSSで調整してください --}}
+    <button type="submit" style="background-color: #999; color: white; padding: 5px 15px; border: none; cursor: pointer;">
+        削除する
+    </button>
 </form>

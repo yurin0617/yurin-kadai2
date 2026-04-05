@@ -37,12 +37,6 @@ class ProductController extends Controller
         $products = $query->paginate(6);
         return view('products.index', compact('products'));
     }
-    public function show($productId)
-    {
-        // 指定されたIDの商品を1件だけ取得。季節（seasons）も一緒に連れてくる。
-        $product = Product::with('seasons')->findOrFail($productId);
-        return view('products.show', compact('product'));
-    }
     // 登録画面を表示する
     public function create()
     {
@@ -73,7 +67,8 @@ class ProductController extends Controller
         // 5. 完了メッセージを出して一覧に戻る
         return redirect()->route('products.index')->with('success', '商品を登録しました');
     }
-    public function edit($productId)
+
+    public function show($productId)
     {
         // 編集対象の商品を取得（リレーションも一緒に）
         $product = Product::with('seasons')->findOrFail($productId);
@@ -105,6 +100,24 @@ class ProductController extends Controller
 
         $product->seasons()->sync($request->seasons);
 
-        return redirect()->route('products.show', $product->id)->with('success', '更新しました');
+        return redirect()->route('products.index');
+    }
+    public function destroy($productId)
+    {
+        // 1. 削除対象の商品を見つける
+        $product = Product::findOrFail($productId);
+
+        // 2. 画像ファイルが登録されていれば、ストレージから物理削除
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        // 3. データベースから商品を削除
+        // 中間テーブル（seasons）との紐付けも、モデルの設定（cascade等）があれば自動、
+        // もしくは $product->seasons()->detach(); をここで呼ぶと確実です。
+        $product->delete();
+
+        // 4. 一覧画面に戻り、メッセージを表示
+        return redirect()->route('products.index')->with('success', '商品を削除しました');
     }
 }
