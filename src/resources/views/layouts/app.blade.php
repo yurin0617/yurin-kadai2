@@ -6,6 +6,7 @@
     <title>mogitate</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     @if(Route::is('products.index'))
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     @endif
