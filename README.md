@@ -51,7 +51,7 @@ Ngnix：1.21.1
 
 ## URL
 ```
-https://github.com/yurin0617/yurin-kadai2.git
+商品一覧：http://localhost/products
 ```
 
 ## ER図
