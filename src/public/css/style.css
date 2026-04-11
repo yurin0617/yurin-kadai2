@@ -1,6 +1,7 @@
 body {
     background-color: #ffffff;
     margin: 0;
+    padding: 0 10%;
     font-family: 'Arial', sans-serif;
 }
 
@@ -15,6 +16,15 @@ body {
     font-size: 32px;
     text-decoration: none;
 }
+
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* これで左右に分かれます */
+    align-items: center;           /* 上下中央揃え */
+    padding: 0 20px;               /* 必要に応じて左右に余白 */
+}
+
 
 /* どのページでも使うボタンの基本形 */
 .btn-add {
