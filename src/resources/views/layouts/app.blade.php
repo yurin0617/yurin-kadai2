@@ -16,12 +16,25 @@
     @if(Route::is('products.show'))
     <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
     @endif
+    @yield('css')
 </head>
 
 <body>
     <header class="main-header">
         <div class="header-container">
-            <span class="logo">mogitate</span>
+            <a class="logo" href="/products">mogitate</a>
+            <nav>
+                <ul class="header-nav">
+                    @if (Auth::check())
+                    <li class="header-nav__item">
+                        <form class="form" action="/logout" method="post">
+                            @csrf
+                            <button class="header-nav__button" type="submit">ログアウト</button>
+                        </form>
+                    </li>
+                    @endif
+                </ul>
+            </nav>
         </div>
     </header>
 

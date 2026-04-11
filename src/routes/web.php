@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
 
 // 商品登録画面を表示する（GET）
 Route::get('/products/register', [ProductController::class, 'create'])->name('product.register');
@@ -29,4 +30,11 @@ Route::get('/products/detail/{productId}', [ProductController::class, 'show'])->
 Route::post('/products/{productId}/update', [ProductController::class, 'update'])->name('products.update');
 // 商品を削除する処理 (POST)
 Route::post('/products/{productId}/delete', [ProductController::class, 'destroy'])->name('products.destroy');
+
+Route::middleware('auth')->group(
+    function () {
+        Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+    }
+);
+
 
