@@ -70,6 +70,13 @@
     padding: 15px;
 }
 
+.card-header {
+    display: flex;
+    justify-content: space-between; /* 名前を左、ユーザーを右に寄せる */
+    align-items: center;           /* 上下の中心を揃える */
+    margin-bottom: 8px;            /* 下の価格との間隔 */
+}
+
 /* ページネーション全体のコンテナ */
 .pagination-wrapper {
     margin-top: 50px;

@@ -28,6 +28,7 @@ body {
 
 /* どのページでも使うボタンの基本形 */
 .btn-add {
+    border: none;
     background-color: #ffcc00;
     color: #fff;
     padding: 10px 20px;

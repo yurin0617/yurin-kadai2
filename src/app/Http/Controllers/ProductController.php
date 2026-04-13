@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Season;
@@ -18,8 +19,8 @@ class ProductController extends Controller
 
         $sort = $request->input('sort');
 
-        // 2. クエリ（検索命令）の準備を始める
-        $query = Product::query();
+        // 修正ポイント：with('user') を追加して、ユーザー情報をまとめて取得
+        $query = Product::with('user');
 
         // 3. もし検索文字があれば、名前にその文字が含まれる商品を絞り込む
         if ($search) {
@@ -54,6 +55,7 @@ class ProductController extends Controller
 
         // 3. データベースへ保存 (Productモデルを使用)
         $product = Product::create([
+            'user_id'        => Auth::id(), // ログイン中のユーザーIDを保存
             'name'        => $validated['name'],
             'price'       => $validated['price'],
             'image'       => $imagePath, // 保存したパスをいれる

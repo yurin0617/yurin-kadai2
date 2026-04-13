@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
+
 @section('content')
 <div class="index-container">
     <aside class="sidebar">
@@ -30,7 +34,10 @@
             <a href="{{ route('products.show', ['productId' => $product->id]) }}" class="product-card">
                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
                 <div class="card-body">
-                    <p><strong>{{ $product->name }}</strong></p>
+                    <div class="card-header">
+                        <p><strong>{{ $product->name }}</strong></p>
+                        <p>{{ $product->user->name}}</p>
+                    </div>
                     <p>¥{{ number_format($product->price) }}</p>
                 </div>
             </a>

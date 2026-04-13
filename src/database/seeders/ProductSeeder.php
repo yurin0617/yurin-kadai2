@@ -16,6 +16,7 @@ class ProductSeeder extends Seeder
     { {
             // 例：キウイの登録
             $kiwi = Product::create([
+                'user_id' => 1,
                 'name' => 'キウイ',
                 'price' => 800,
                 'image' => 'kiwi.png',
@@ -25,6 +26,7 @@ class ProductSeeder extends Seeder
             $kiwi->seasons()->attach([3, 4]);
 
             $strawberry = Product::create([
+                'user_id' => 1,
                 'name' => 'ストロベリー',
                 'price' => 1200,
                 'image' => 'strawberry.png',
@@ -33,7 +35,8 @@ class ProductSeeder extends Seeder
             // 季節（春：1,夏：2,秋:3, 冬:4）を紐付け
             $strawberry->seasons()->attach([1]);
 
-            $orange= Product::create([
+            $orange = Product::create([
+                'user_id' => 1,
                 'name' => 'オレンジ',
                 'price' => 850,
                 'image' => 'orange.png',
@@ -43,6 +46,7 @@ class ProductSeeder extends Seeder
             $orange->seasons()->attach([3, 4]);
 
             $watermelon = Product::create([
+                'user_id' => 1,
                 'name' => 'スイカ',
                 'price' => 700,
                 'image' => 'watermelon.png',
@@ -52,6 +56,7 @@ class ProductSeeder extends Seeder
             $watermelon->seasons()->attach([2]);
 
             $peach = Product::create([
+                'user_id' => 1,
                 'name' => 'ピーチ',
                 'price' => 1000,
                 'image' => 'peach.png',
@@ -61,6 +66,7 @@ class ProductSeeder extends Seeder
             $peach->seasons()->attach([1, 2]);
 
             $muscat = Product::create([
+                'user_id' => 1,
                 'name' => 'シャインマスカット',
                 'price' => 1400,
                 'image' => 'muscat.png',
@@ -70,6 +76,7 @@ class ProductSeeder extends Seeder
             $muscat->seasons()->attach([2, 3]);
 
             $pineapple = Product::create([
+                'user_id' => 1,
                 'name' => 'パイナップル',
                 'price' => 800,
                 'image' => 'pineapple.png',
@@ -79,6 +86,7 @@ class ProductSeeder extends Seeder
             $pineapple->seasons()->attach([2]);
 
             $grapes = Product::create([
+                'user_id' => 1,
                 'name' => 'ブドウ',
                 'price' => 1100,
                 'image' => 'grapes.png',
@@ -88,6 +96,7 @@ class ProductSeeder extends Seeder
             $grapes->seasons()->attach([2, 3]);
 
             $banana = Product::create([
+                'user_id' => 1,
                 'name' => 'バナナ',
                 'price' => 600,
                 'image' => 'banana.png',
@@ -97,6 +106,7 @@ class ProductSeeder extends Seeder
             $banana->seasons()->attach([2]);
 
             $melon = Product::create([
+                'user_id' => 1,
                 'name' => 'メロン',
                 'price' => 900,
                 'image' => 'melon.png',

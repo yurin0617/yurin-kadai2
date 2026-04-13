@@ -9,9 +9,15 @@ class Product extends Model
 {
     use HasFactory;
     // これがないと「勝手にデータを入れないで！」とエラー（MassAssignment）になります
-    protected $fillable = ['name', 'price', 'image', 'description'];
+    protected $fillable = ['user_id','name', 'price', 'image', 'description'];
     public function seasons()
     {
         return $this->belongsToMany(Season::class);
+    }
+
+    public function user()
+    {
+        // 「私は一人のユーザーに所属しています」という宣言
+        return $this->belongsTo(User::class);
     }
 }
