@@ -67,6 +67,36 @@
 
     <hr class="divider">
 
+    <div class="comment-section">
+        <h3>コメント</h3>
+
+        {{-- コメント投稿フォーム --}}
+        <form action="{{ route('comments.store', ['productId' => $product->id]) }}" method="POST" class="comment-form">
+            @csrf
+            <textarea name="comment" placeholder="コメントを入力">{{ old('comment') }}</textarea>
+
+            {{-- エラー表示 --}}
+            @error('comment')
+            <div class="error-msg" style="color: red;">{{ $message }}</div>
+            @enderror
+
+            <button type="submit">送信</button>
+
+        </form>
+
+        {{-- コメント一覧 --}}
+        <div class="comment-list">
+            @foreach($product->comments as $comment)
+            <div class="comment-item">
+                <p><strong>{{ $comment->user->name }}</strong>: {{ $comment->comment }}</p>
+                <small>{{ $comment->created_at->format('Y/m/d H:i') }}</small>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+    <hr class="divider">
+
     {{-- 削除フォーム --}}
     <form action="{{ route('products.destroy', ['productId' => $product->id]) }}" method="POST" class="delete-form" onsubmit="return confirm('本当に削除しますか？')">
         @csrf

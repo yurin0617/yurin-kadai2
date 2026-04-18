@@ -31,6 +31,8 @@ Route::post('/products/{productId}/update', [ProductController::class, 'update']
 // 商品を削除する処理 (POST)
 Route::post('/products/{productId}/delete', [ProductController::class, 'destroy'])->name('products.destroy');
 
+Route::post('/products/{productId}/comments', [ProductController::class, 'storeComment'])->name('comments.store');
+
 Route::middleware('auth')->group(
     function () {
         Route::get('/products', [ProductController::class, 'index'])->name('products.index');

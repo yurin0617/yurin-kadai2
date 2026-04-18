@@ -20,4 +20,8 @@ class Product extends Model
         // 「私は一人のユーザーに所属しています」という宣言
         return $this->belongsTo(User::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

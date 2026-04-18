@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Season;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\StoreCommentRequest;
+use App\Models\Comment;
 
 class ProductController extends Controller
 {
@@ -73,7 +75,7 @@ class ProductController extends Controller
     public function show($productId)
     {
         // 編集対象の商品を取得（リレーションも一緒に）
-        $product = Product::with('seasons')->findOrFail($productId);
+        $product = Product::with(['seasons', 'comments.user'])->findOrFail($productId);
 
         // チェックボックスの選択肢として使うために全季節を取得
         $seasons = Season::all();
@@ -121,5 +123,20 @@ class ProductController extends Controller
 
         // 4. 一覧画面に戻り、メッセージを表示
         return redirect()->route('products.index')->with('success', '商品を削除しました');
+    }
+
+    public function storeComment(StoreCommentRequest $request, $productId)
+    {
+        // ここに到達した時点でバリデーションは完了しています
+        $validated = $request->validated();
+
+        Comment::create([
+            'user_id'    => Auth::id(),
+            'product_id' => $productId,
+            'comment'    => $validated['comment'],
+        ]);
+
+        return redirect()->route('products.show', ['productId' => $productId])
+            ->with('success', 'コメントを投稿しました');
     }
 }
